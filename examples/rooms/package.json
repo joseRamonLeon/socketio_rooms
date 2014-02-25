@@ -1,0 +1,10 @@
+{
+  "name": "socket.io-rooms",
+  "version": "0.0.0",
+  "description": "A server-side demo of the room handler callback.",
+  "main": "app.js",
+  "author": "Chris Kilding",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {}
+}

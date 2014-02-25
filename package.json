@@ -1,0 +1,41 @@
+{
+  "name": "socketio_rooms",
+  "version": "0.0.1",
+  "description": "Full featured room callbacks for socket.io.",
+  "keywords": [
+    "realtime",
+    "websocket",
+    "events",
+    "socket",
+    "io",
+    "rooms"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/themasterchef/socketio_rooms.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "signals": "1.0.0",
+    "debug": "0.7.4",
+    "lodash-node": "~2.4.1"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "expect.js": "*",
+    "supertest": "*",
+    "istanbul": "0.2.3",
+    "sinon": "~1.8.2",
+    "socket.io": "LearnBoost/socket.io",
+    "socket.io-client": "LearnBoost/socket.io-client"
+  },
+  "contributors": [
+    {
+      "name": "Christopher Kilding",
+      "email": "chris_j_k@hotmail.com"
+    }
+  ]
+}
