@@ -1,6 +1,8 @@
 # socketio_rooms
 A plugin for the socket.io framework supporting 'full featured rooms', including room-level callbacks, event bubbling from participating sockets, and much more.
 
+*WARNING*: This is under heavy initial development and has not yet reached a usable state.
+
 ## Features
 Ever had to do a significant amount of work operating at the room level, but got frustrated when you only had sockets to work with? This feature's for you...
 - Access a first-class room object in the function callback.
