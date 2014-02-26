@@ -3,6 +3,8 @@ var sio = require('socket.io');
 var request = require('supertest');
 var expect = require('expect.js');
 var sinon = require('sinon');
+var Emitter = require('events').EventEmitter;
+var Signal = require('signals');
 
 /* The System Under Test */
 var Room = require('../../lib/room');
@@ -50,91 +52,10 @@ describe('room', function() {
     // Is the owner in the list of sockets
     expect(r.sockets).to.contain(owner);
     
-    done();
-  });
-  
-  it('should emit an error when onerror called', function (done) {
-    // Mock room deps
-    var badSocket = { id: '456' };
-    var errorText = '456';
-    
-    // Stub the 'emit' method
-    var method = sandbox.stub(r, 'emit');
-    
-    // Execute
-    r.onerror(badSocket, errorText);
-    
-    // Stub assertions
-    sinon.assert.calledOnce(method);
-    sinon.assert.calledWithMatch(method, 'error', badSocket, errorText);
-    
-    done();
-  });
-  
-  it('should emit a join event when onjoin called', function (done) {
-    // Mock room deps
-    var joinedSocket = { id: '456' };
-
-    // Stub the 'emit' method
-    var method = sandbox.stub(r, 'emit');
-        
-    // Execute
-    r.onjoin(joinedSocket);
-    
-    // Stub assertions
-    sinon.assert.calledOnce(method);
-    sinon.assert.calledWithMatch(method, 'join', joinedSocket);
-
-    done();
-  });
-  
-  it('should know of the joining socket when onjoin called', function (done) {
-    // Mock room deps
-    var joinedSocket = { id: '456' };
-    clientsArray.push(joinedSocket);
-    
-    // Stub the 'emit' method
-    var method = sandbox.stub(r, 'emit');
-    
-    // Execute
-    r.onjoin(joinedSocket);
-    
-    // Does it contain the new socket?
-    expect(r.sockets).to.contain(joinedSocket);
-    
-    done();
-  });
-  
-  it('should emit a leave event when onleave called', function (done) {
-    // Mock room deps
-    var leavingSocket = { id: '456' };
-    var text = 'aoeu';
-        
-    // Stub the 'emit' method
-    var method = sandbox.stub(r, 'emit');
-    
-    // Execute
-    r.onleave(leavingSocket, text);
-    
-    // Stub assertions
-    sinon.assert.calledOnce(method);
-    sinon.assert.calledWithMatch(method, 'leave', leavingSocket, text);
-    
-    done();
-  });
-  
-  it('should remove leaving socket from list when onleave called', function (done) {
-    // Mock room deps
-    var leavingSocket = { id: '456' };
-    
-    // Stub the 'emit' method
-    var method = sandbox.stub(r, 'emit');
-    
-    // Execute
-    r.onleave(leavingSocket);
-    
-    // Does it contain the old socket?
-    expect(r.sockets).not.to.contain(leavingSocket);
+    // Are there some signals
+    expect(r.joined).to.be.a(Signal);
+    expect(r.left).to.be.a(Signal);
+    expect(r.destroyed).to.be.a(Signal);
     
     done();
   });
